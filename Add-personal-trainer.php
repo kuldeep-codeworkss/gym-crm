@@ -12,12 +12,13 @@
                             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
                                 aria-label="breadcrumb">
                                 <ol class="breadcrumb ps-0 mb-0 pb-0">
-                                    <li class="breadcrumb-item"><a href="#">Personal Trainer</a></li>
+                                    <li class="breadcrumb-item"><a href="./Personal-trainer-list.php">Personal
+                                            Trainer</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Add Personal Trainer</li>
                                 </ol>
                             </nav>
                         </div>
-                        <a href="#"
+                        <a href="./Personal-trainer-list.php"
                             class="btn btn-primary btn-sm d-flex align-items-center justify-content-between ms-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -47,31 +48,29 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="Phone"
                                             class="form-label fw-bold text-muted text-uppercase">Phone</label>
-                                        <input type="number"  class="form-control" id="Phone"
-                                            placeholder="Enter Phone">
+                                        <input type="number" class="form-control" id="Phone" placeholder="Enter Phone">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="inputState"
                                             class="form-label fw-bold text-muted text-uppercase">Gender</label>
-                                        <select id="inputState"  class="form-select form-control choicesjs">
+                                        <select id="inputState" class="form-select form-control choicesjs">
                                             <option value="selected">Select Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                         </select>
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="Email Address"
                                             class="form-label fw-bold text-muted text-uppercase">Email
                                             Address </label>
-                                        <input type="email"  class="form-control" id="Email Address"
+                                        <input type="email" class="form-control" id="Email Address"
                                             placeholder="Enter Email Address ">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="Age"
                                             class="form-label fw-bold text-muted text-uppercase">Age</label>
-                                        <input type="number"  class="form-control" id="Age"
-                                            placeholder="Enter Age">
-                                    </div> 
+                                        <input type="number" class="form-control" id="Age" placeholder="Enter Age">
+                                    </div>
                                     <!-- <div class="col-md-6 mb-3">
                                         <label for="Members-Assign" class="form-label fw-bold text-muted text-uppercase"> Members Assign </label>
                                         <select multiple class="form-control choicesjs" id=" Members-Assign" name="Plan-type">
