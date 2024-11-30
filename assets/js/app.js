@@ -45,267 +45,267 @@ Index Of Script
 Index Of Script
 ----------------------------------------------*/
 
-(function(){
+(function () {
     "use strict";
 
-        /*------------Popover--------------*/
-        const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        if (typeof bootstrap !== typeof undefined) {
-            popoverTriggerList.map(function (popoverTriggerEl) {
+    /*------------Popover--------------*/
+    const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    if (typeof bootstrap !== typeof undefined) {
+        popoverTriggerList.map(function (popoverTriggerEl) {
             return new bootstrap.Popover(popoverTriggerEl)
-            })
-        }
-        /*-------------Tooltip--------------------*/
-        if (typeof bootstrap !== typeof undefined) {
-            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-            tooltipTriggerList.map(function (tooltipTriggerEl) {
+        })
+    }
+    /*-------------Tooltip--------------------*/
+    if (typeof bootstrap !== typeof undefined) {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
-            })
+        })
 
-            const sidebarTooltipTriggerList = [].slice.call(document.querySelectorAll('[data-sidebar-toggle="tooltip"]'))
-            sidebarTooltipTriggerList.map(function (tooltipTriggerEl) {
+        const sidebarTooltipTriggerList = [].slice.call(document.querySelectorAll('[data-sidebar-toggle="tooltip"]'))
+        sidebarTooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
-            })
+        })
+    }
+    /*---------------------------------------------------------------------
+    Fixed Nav
+    -----------------------------------------------------------------------*/
+
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > 0) {
+            $('.iq-top-navbar').addClass('fixed');
+        } else {
+            $('.iq-top-navbar').removeClass('fixed');
         }
-        /*---------------------------------------------------------------------
-        Fixed Nav
-        -----------------------------------------------------------------------*/
+    });
 
-        $(window).on('scroll', function () {
-            if ($(window).scrollTop() > 0) {
-                $('.iq-top-navbar').addClass('fixed');
-            } else {
-                $('.iq-top-navbar').removeClass('fixed');
-            }
-        });
-
-        $(window).on('scroll', function () {
-            if ($(window).scrollTop() > 0) {
-                $('.white-bg-menu').addClass('sticky-menu');
-            } else {
-                $('.white-bg-menu').removeClass('sticky-menu');
-            }
-        });
-
-
-       /*---------------------------------------------------------------------
-        Sidebar Widget
-        -----------------------------------------------------------------------*/
-
-        jQuery(document).on("click", '.side-menu > li > a', function() {
-            jQuery('.side-menu > li > a').parent().removeClass('active');
-            jQuery(this).parent().addClass('active');
-        });
-
-        // Active menu
-        var parents = jQuery('li.active').parents('.submenu.collapse');
-
-        parents.addClass('show');
-
-
-        parents.parents('li').addClass('active');
-        jQuery('li.active > a[aria-expanded="false"]').attr('aria-expanded', 'true');
-
-        /*---------------------------------------------------------------------
-        FullScreen
-        -----------------------------------------------------------------------*/
-        jQuery(document).on('click', '.full-screen', function() {
-            let elem = jQuery(this);
-            elem.find('i').addClass('d-none');
-            elem.find('i').addClass('d-none');
-            if (!document.fullscreenElement &&
-                !document.mozFullScreenElement && // Mozilla
-                !document.webkitFullscreenElement && // Webkit-Browser
-                !document.msFullscreenElement) { // MS IE ab version 11
-                    elem.find('.min').removeClass('d-none');
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) {
-                    document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) {
-                    document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                } else if (document.documentElement.msRequestFullscreen) {
-                    document.documentElement.msRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                }
-            } else {
-                elem.find('.max').removeClass('d-none');
-                if (document.cancelFullScreen) {
-                    document.cancelFullScreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        });
-
-
-        /*---------------------------------------------------------------------
-        Page Loader
-        -----------------------------------------------------------------------*/
-        jQuery("#load").fadeOut();
-        jQuery("#loading").delay().fadeOut("");
-
-
-        /*---------------------------------------------------------------------
-        Counter
-        -----------------------------------------------------------------------*/
-        if (window.counterUp !== undefined) {
-            const counterUp = window.counterUp["default"]
-            const $counters = $(".counter");
-            $counters.each(function (ignore, counter) {
-                var waypoint = new Waypoint( {
-                    element: $(this),
-                    handler: function() {
-                        counterUp(counter, {
-                            duration: 1000,
-                            delay: 10
-                        });
-                        this.destroy();
-                    },
-                    offset: 'bottom-in-view',
-                } );
-            });
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > 0) {
+            $('.white-bg-menu').addClass('sticky-menu');
+        } else {
+            $('.white-bg-menu').removeClass('sticky-menu');
         }
+    });
 
 
-        /*---------------------------------------------------------------------
-        Progress Bar
-        -----------------------------------------------------------------------*/
-        jQuery('.iq-progress-bar > span').each(function() {
-            let progressBar = jQuery(this);
-            let width = jQuery(this).data('percent');
-            progressBar.css({
-                'transition': 'width 2s'
+    /*---------------------------------------------------------------------
+     Sidebar Widget
+     -----------------------------------------------------------------------*/
+
+    jQuery(document).on("click", '.side-menu > li > a', function () {
+        jQuery('.side-menu > li > a').parent().removeClass('active');
+        jQuery(this).parent().addClass('active');
+    });
+
+    // Active menu
+    var parents = jQuery('li.active').parents('.submenu.collapse');
+
+    parents.addClass('show');
+
+
+    parents.parents('li').addClass('active');
+    jQuery('li.active > a[aria-expanded="false"]').attr('aria-expanded', 'true');
+
+    /*---------------------------------------------------------------------
+    FullScreen
+    -----------------------------------------------------------------------*/
+    jQuery(document).on('click', '.full-screen', function () {
+        let elem = jQuery(this);
+        elem.find('i').addClass('d-none');
+        elem.find('i').addClass('d-none');
+        if (!document.fullscreenElement &&
+            !document.mozFullScreenElement && // Mozilla
+            !document.webkitFullscreenElement && // Webkit-Browser
+            !document.msFullscreenElement) { // MS IE ab version 11
+            elem.find('.min').removeClass('d-none');
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        } else {
+            elem.find('.max').removeClass('d-none');
+            if (document.cancelFullScreen) {
+                document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    });
+
+
+    /*---------------------------------------------------------------------
+    Page Loader
+    -----------------------------------------------------------------------*/
+    jQuery("#load").fadeOut();
+    jQuery("#loading").delay().fadeOut("");
+
+
+    /*---------------------------------------------------------------------
+    Counter
+    -----------------------------------------------------------------------*/
+    if (window.counterUp !== undefined) {
+        const counterUp = window.counterUp["default"]
+        const $counters = $(".counter");
+        $counters.each(function (ignore, counter) {
+            var waypoint = new Waypoint({
+                element: $(this),
+                handler: function () {
+                    counterUp(counter, {
+                        duration: 1000,
+                        delay: 10
+                    });
+                    this.destroy();
+                },
+                offset: 'bottom-in-view',
             });
-            setTimeout(function() {
-                    progressBar.css('width', width + '%');
-            }, 100);
         });
+    }
 
-        jQuery('.progress-bar-vertical > span').each(function () {
-            let progressBar = jQuery(this);
-            let height = jQuery(this).data('percent');
-            progressBar.css({
-                'transition': 'height 2s'
-            });
-            setTimeout(function () {
-                    progressBar.css('height', height + '%');
-            }, 100);
+
+    /*---------------------------------------------------------------------
+    Progress Bar
+    -----------------------------------------------------------------------*/
+    jQuery('.iq-progress-bar > span').each(function () {
+        let progressBar = jQuery(this);
+        let width = jQuery(this).data('percent');
+        progressBar.css({
+            'transition': 'width 2s'
         });
+        setTimeout(function () {
+            progressBar.css('width', width + '%');
+        }, 100);
+    });
 
-
-        /*---------------------------------------------------------------------
-        Page Menu
-        -----------------------------------------------------------------------*/
-        jQuery(document).on('click', '.wrapper-menu', function() {
-            jQuery(this).toggleClass('open');
+    jQuery('.progress-bar-vertical > span').each(function () {
+        let progressBar = jQuery(this);
+        let height = jQuery(this).data('percent');
+        progressBar.css({
+            'transition': 'height 2s'
         });
+        setTimeout(function () {
+            progressBar.css('height', height + '%');
+        }, 100);
+    });
 
-        jQuery(document).on('click', ".wrapper-menu", function() {
-            jQuery("body").toggleClass("sidebar-main");
-        });
+
+    /*---------------------------------------------------------------------
+    Page Menu
+    -----------------------------------------------------------------------*/
+    jQuery(document).on('click', '.wrapper-menu', function () {
+        jQuery(this).toggleClass('open');
+    });
+
+    jQuery(document).on('click', ".wrapper-menu", function () {
+        jQuery("body").toggleClass("sidebar-main");
+    });
 
 
-        /*---------------------------------------------------------------------
-        user toggle
-        -----------------------------------------------------------------------*/
-        jQuery(document).on('click', '.user-toggle', function() {
-            jQuery(this).parent().addClass('show-data');
-        });
+    /*---------------------------------------------------------------------
+    user toggle
+    -----------------------------------------------------------------------*/
+    jQuery(document).on('click', '.user-toggle', function () {
+        jQuery(this).parent().addClass('show-data');
+    });
 
-        jQuery(document).on('click', ".close-data", function() {
-            jQuery('.user-toggle').parent().removeClass('show-data');
-        });
-        jQuery(document).on("click", function(event){
+    jQuery(document).on('click', ".close-data", function () {
+        jQuery('.user-toggle').parent().removeClass('show-data');
+    });
+    jQuery(document).on("click", function (event) {
         var $trigger = jQuery(".user-toggle");
-        if($trigger !== event.target && !$trigger.has(event.target).length){
+        if ($trigger !== event.target && !$trigger.has(event.target).length) {
             jQuery(".user-toggle").parent().removeClass('show-data');
         }
+    });
+
+    /*---------------------------------------------------------------------
+    Data tables
+    -----------------------------------------------------------------------*/
+    if ($.fn.DataTable) {
+        const table = $('.data-table').DataTable();
+    }
+
+
+    /*---------------------------------------------------------------------
+    Form Validation
+    -----------------------------------------------------------------------*/
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
         });
+    }, false);
 
-        /*---------------------------------------------------------------------
-        Data tables
-        -----------------------------------------------------------------------*/
-        if($.fn.DataTable){
-            const table = $('.data-table').DataTable();
-        }
-
-
-        /*---------------------------------------------------------------------
-        Form Validation
-        -----------------------------------------------------------------------*/
-
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-
-      /*---------------------------------------------------------------------
-       Active Class for Pricing Table
-       -----------------------------------------------------------------------*/
-      jQuery("#my-table tr th").click(function () {
+    /*---------------------------------------------------------------------
+     Active Class for Pricing Table
+     -----------------------------------------------------------------------*/
+    jQuery("#my-table tr th").click(function () {
         jQuery('#my-table tr th').children().removeClass('active');
         jQuery(this).children().addClass('active');
         jQuery("#my-table td").each(function () {
-          if (jQuery(this).hasClass('active')) {
-            jQuery(this).removeClass('active')
-          }
+            if (jQuery(this).hasClass('active')) {
+                jQuery(this).removeClass('active')
+            }
         });
         var col = jQuery(this).index();
         jQuery("#my-table tr td:nth-child(" + parseInt(col + 1) + ")").addClass('active');
-      });
+    });
 
 
-        /*---------------------------------------------------------------------
-        Scrollbar
-        -----------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------
+    Scrollbar
+    -----------------------------------------------------------------------*/
 
-        jQuery('.data-scrollbar').each(function () {
-            var attr = $(this).attr('data-scroll');
-            if (typeof attr !== typeof undefined && attr !== false){
+    jQuery('.data-scrollbar').each(function () {
+        var attr = $(this).attr('data-scroll');
+        if (typeof attr !== typeof undefined && attr !== false) {
             let Scrollbar = window.Scrollbar;
             var a = jQuery(this).data('scroll');
             Scrollbar.init(document.querySelector('div[data-scroll= "' + a + '"]'));
-            }
-        });
+        }
+    });
 
 
-      /*---------------------------------------------------------------------
-      image-upload
-      -----------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------
+    image-upload
+    -----------------------------------------------------------------------*/
 
-      $('.form_gallery-upload').on('change', function() {
-          var length = $(this).get(0).files.length;
-          var galleryLabel  = $(this).attr('data-name');
+    $('.form_gallery-upload').on('change', function () {
+        var length = $(this).get(0).files.length;
+        var galleryLabel = $(this).attr('data-name');
 
-          if( length > 1 ){
+        if (length > 1) {
             $(galleryLabel).text(length + " files selected");
-          } else {
+        } else {
             $(galleryLabel).text($(this)[0].files[0].name);
-          }
-        });
+        }
+    });
 
     /*---------------------------------------------------------------------
         video
       -----------------------------------------------------------------------*/
-      $(document).ready(function(){
-      $('.form_video-upload input').change(function () {
-        $('.form_video-upload p').text(this.files.length + " file(s) selected");
-      });
+    $(document).ready(function () {
+        $('.form_video-upload input').change(function () {
+            $('.form_video-upload p').text(this.files.length + " file(s) selected");
+        });
     });
     /*---------------------------------------------------------------------
         dark mode
@@ -328,32 +328,28 @@ Index Of Script
     //   }
 
 
-        /*---------------------------------------------------------------------
-        Button
-        -----------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------
+    Button
+    -----------------------------------------------------------------------*/
 
-        jQuery('.qty-btn').on('click',function(){
-          var id = jQuery(this).attr('id');
+    jQuery('.qty-btn').on('click', function () {
+        var id = jQuery(this).attr('id');
 
-          var val = parseInt(jQuery('#quantity').val());
+        var val = parseInt(jQuery('#quantity').val());
 
-          if(id == 'btn-minus')
-          {
-            if(val != 0)
-            {
-              jQuery('#quantity').val(val-1);
+        if (id == 'btn-minus') {
+            if (val != 0) {
+                jQuery('#quantity').val(val - 1);
             }
-            else
-            {
-              jQuery('#quantity').val(0);
+            else {
+                jQuery('#quantity').val(0);
             }
 
-          }
-          else
-          {
-            jQuery('#quantity').val(val+1);
-          }
-        });
+        }
+        else {
+            jQuery('#quantity').val(val + 1);
+        }
+    });
 
 
     $(document).on('click', '[data-toggel-extra="side-nav"]', function () {
@@ -375,7 +371,7 @@ Index Of Script
         $(this).closest('.right-sidenav').removeClass('active')
     })
 
-    $(document).on('click', '[data-toggle="end-call"]', function(){
+    $(document).on('click', '[data-toggle="end-call"]', function () {
         $(this).closest('.tab-pane').removeClass('active').removeClass('show')
         $($(this).attr('data-target')).tab('show')
         $('.chat-action').find('[data-toggle="tab"]').removeClass('active')
@@ -389,27 +385,26 @@ Index Of Script
         $(this).addClass('active')
     })
 
-    $('emoji-picker').on('emoji-click', function(e){
-        $(e.target.dataset.targetInput).val($(e.target.dataset.targetInput).val()+e.detail.unicode)
+    $('emoji-picker').on('emoji-click', function (e) {
+        $(e.target.dataset.targetInput).val($(e.target.dataset.targetInput).val() + e.detail.unicode)
     })
 
-    $('.dropdown-menu').on('click', function(event){
+    $('.dropdown-menu').on('click', function (event) {
         event.stopPropagation();
     });
 
-    var board =  $('.draggable-item');
+    var board = $('.draggable-item');
 
     var selector = [];
-    if(board.length > 0 )
-    {
-        for(var i = 0 ; i < board.length ; i++) {
-            selector.push(document.querySelector('#draggable-item-'+i));
-            selector.push(document.querySelector('#list-draggable-item-'+i));
+    if (board.length > 0) {
+        for (var i = 0; i < board.length; i++) {
+            selector.push(document.querySelector('#draggable-item-' + i));
+            selector.push(document.querySelector('#list-draggable-item-' + i));
         }
     }
-    dragula( selector ).on('drop', function(el) {
+    dragula(selector).on('drop', function (el) {
         $(el).addClass(' animate__animated animate__rubberBand')
-        setTimeout(function () { 
+        setTimeout(function () {
             $(el).removeClass(' animate__animated animate__rubberBand')
         }, 1000)
     });
@@ -419,128 +414,128 @@ Index Of Script
     if (jQuery('#calendar1').length) {
         var calendarEl = document.getElementById('calendar1');
 
-            calendar1 = new FullCalendar.Calendar(calendarEl, {
-                selectable: true,
-                plugins: ["timeGrid", "dayGrid", "list", "interaction"],
-                timeZone: "UTC",
-                defaultView: "dayGridMonth",
-                contentHeight: "auto",
-                eventLimit: true,
-                dayMaxEvents: 4,
-                header: {
-                    left: "prev,next today",
-                    center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+        calendar1 = new FullCalendar.Calendar(calendarEl, {
+            selectable: true,
+            plugins: ["timeGrid", "dayGrid", "list", "interaction"],
+            timeZone: "UTC",
+            defaultView: "dayGridMonth",
+            contentHeight: "auto",
+            eventLimit: true,
+            dayMaxEvents: 4,
+            header: {
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+            },
+            dateClick: function (info) {
+                $('#schedule-start-date').val(info.dateStr)
+                $('#schedule-end-date').val(info.dateStr)
+                $('#date-event').modal('show')
+            },
+            events: [
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-20, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#4731b6'
                 },
-                dateClick: function (info) {
-                    $('#schedule-start-date').val(info.dateStr)
-                    $('#schedule-end-date').val(info.dateStr)
-                    $('#date-event').modal('show')
+                {
+                    title: 'All Day Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-18, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#465af7'
                 },
-                events: [
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-20, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#4731b6'
-                    },
-                    {
-                        title: 'All Day Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-18, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#465af7'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-16, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        end: moment(new Date(), 'YYYY-MM-DD').add(-13, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#7858d7'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-14, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#465af7'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-12, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#5baa73'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-10, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#01041b'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-8, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#4731b6'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-6, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#15ca92'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-5, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#f4a965'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(-2, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#ea643f'
-                    },
+                {
+                    title: 'Long Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-16, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    end: moment(new Date(), 'YYYY-MM-DD').add(-13, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#7858d7'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-14, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#465af7'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-12, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#5baa73'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-10, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#01041b'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-8, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#4731b6'
+                },
+                {
+                    title: 'Meeting',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-6, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#15ca92'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-5, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#f4a965'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(-2, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#ea643f'
+                },
 
-                    {
-                        title: 'Meeting',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#15ca92'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T06:30:00.000Z',
-                        color: '#4731b6'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T07:30:00.000Z',
-                        color: '#5baa73'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T08:30:00.000Z',
-                        color: '#f4a965'
-                    },
-                    {
-                        title: 'Doctor Meeting',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#f4a965'
-                    },
-                    {
-                        title: 'All Day Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#465af7'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(8, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#465af7'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: moment(new Date(), 'YYYY-MM-DD').add(10, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
-                        color: '#5baa73'
-                    }
-                ]
-            });
-            calendar1.render();
+                {
+                    title: 'Meeting',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#15ca92'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T06:30:00.000Z',
+                    color: '#4731b6'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T07:30:00.000Z',
+                    color: '#5baa73'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T08:30:00.000Z',
+                    color: '#f4a965'
+                },
+                {
+                    title: 'Doctor Meeting',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#f4a965'
+                },
+                {
+                    title: 'All Day Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#465af7'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(8, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#465af7'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: moment(new Date(), 'YYYY-MM-DD').add(10, 'days').format('YYYY-MM-DD') + 'T05:30:00.000Z',
+                    color: '#5baa73'
+                }
+            ]
+        });
+        calendar1.render();
 
         $(document).on("submit", "#submit-schedule", function (e) {
             e.preventDefault()
@@ -564,14 +559,14 @@ Index Of Script
         const minValue = elem.getAttribute('data-min-value')
         const maxValue = elem.getAttribute('data-max-value')
         const value = elem.getAttribute('data-value')
-        const  type = elem.getAttribute('data-type')
+        const type = elem.getAttribute('data-type')
         if (elem.getAttribute('id') !== '' && elem.getAttribute('id') !== null) {
-            new CircleProgress('#'+elem.getAttribute('id'), {
-            min: minValue,
-        max: maxValue,
-        value: value,
-        textFormat: type,
-        });
+            new CircleProgress('#' + elem.getAttribute('id'), {
+                min: minValue,
+                max: maxValue,
+                value: value,
+                textFormat: type,
+            });
         }
     })
     /*---------------------------------------------------------------------
@@ -579,21 +574,56 @@ Index Of Script
     -----------------------------------------------------------------------*/
     const datepickers = document.querySelectorAll('.vanila-datepicker')
     Array.from(datepickers, (elem) => {
-    new Datepicker(elem)
+        new Datepicker(elem)
     })
     const daterangePickers = document.querySelectorAll('.vanila-daterangepicker')
     Array.from(daterangePickers, (elem) => {
-    new DateRangePicker(elem)
+        new DateRangePicker(elem)
     })
 
     /*---------------------------------------------------------------------
             Choies.js
     -----------------------------------------------------------------------*/
     const choies = document.querySelectorAll('.choicesjs')
-    Array.from(choies,(elem) => {
+    Array.from(choies, (elem) => {
         new Choices(elem, {
             removeItemButton: true,
         })
     })
-  
+
 })();
+
+
+
+// Add memeber 
+
+function togglePayment(option) {
+    const fullPayment = document.getElementById('full-payment');
+    const instalmentPayment = document.getElementById('instalment');
+
+    if (option === 'full') {
+        fullPayment.style.display = 'block';
+        instalmentPayment.style.display = 'none';
+    } else if (option === 'instalment') {
+        instalmentPayment.style.display = 'block';
+        fullPayment.style.display = 'none';
+    }
+}
+
+
+function updateInstalments() {
+    const totalInstalments = parseInt(document.getElementById('Total-Instalments').value);
+    const instalmentContainer = document.getElementById('no-of-instalment-container');
+
+    // Hide all instalments initially
+    const instalmentSections = instalmentContainer.querySelectorAll('.no-of-instalment');
+    instalmentSections.forEach(section => section.style.display = 'none');
+
+    // Show the required number of instalments
+    for (let i = 1; i <= totalInstalments; i++) {
+        const instalmentSection = document.getElementById(`instalment-${i}`);
+        if (instalmentSection) {
+            instalmentSection.style.display = 'flex'; // Or your desired display style
+        }
+    }
+}

@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from templates.iqonic.design/datum-dist/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 23 Nov 2024 10:08:19 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -27,12 +26,15 @@
         rel="stylesheet">
 </head>
 
+
 <body>
-    <!-- loader Start -->
     <div id="loading">
         <div id="loading-center" style="background: url('assets/images/index.html') no-repeat scroll 50%;">
         </div>
     </div>
+
+
+    
     <!-- loader END -->
 
 
