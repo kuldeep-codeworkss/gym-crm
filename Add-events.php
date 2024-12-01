@@ -17,7 +17,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        <a href="#"
+                        <a href="./Events-list.php"
                             class="btn btn-primary btn-sm d-flex align-items-center justify-content-between ms-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
