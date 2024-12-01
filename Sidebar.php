@@ -15,7 +15,7 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="side-menu">
                 <li class="active sidebar-layout">
-                    <a href="index.html" class="svg-icon">
+                    <a href="./index.php" class="svg-icon">
                         <i class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
