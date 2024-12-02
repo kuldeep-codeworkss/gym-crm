@@ -30,22 +30,11 @@
                                         </svg>
                                     </span>
                             </div>
-
                             </label>
                         </div>
                     </div>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-label="Toggle navigation">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-secondary" width="30" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto navbar-list align-items-center">
+                <ul class="navbar-nav  navbar-list align-items-center">
                         <li class="nav-item nav-icon dropdown">
                             <a href="#" class="search-toggle dropdown-toggle" id="notification-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -258,16 +247,17 @@
                                 </div>
                             </div>
                         </li>
-                        
-                        <li class="nav-item nav-icon dropdown">
-                            <a href="#" class="nav-item  badge bg-primary rounded-circle px-3 py-2 dropdown-toggle"
+                        <!-- <li class="nav-item nav-icon dropdown">
+                           
+                        </li> -->
+                </ul>
+                <a href="#" class="nav-item  admin-user rounded-circle d-flex justify-content-center align-items-center  dropdown-toggle"
                                 id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                <!-- <img src="assets/images/user/1.jpg" class="img-fluid avatar-rounded" alt="user"> -->
-                                <h6 class="font-size-18 user-name">A</h6>
+                                <h6 class="font-size-18 user-name text-center">A</h6>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                 <li class="dropdown-item  d-flex svg-icon border-top">
-                                    <svg class="svg-icon me-0 text-secondary" id="h-05-p" width="20"
+                                    <svg class="svg-icon me-2 text-secondary" id="h-05-p" width="20"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -276,9 +266,6 @@
                                     <a href="auth-sign-in.html">Logout</a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </nav>
     </div>
