@@ -33,9 +33,10 @@
 
 <!-- SweetAlert JavaScript -->
 <script src="assets/js/sweetalert.js"></script>
+<script src="assets/js/sweetalert.min.js"></script>
 
 <!-- Vectoe Map JavaScript -->
-<script src="assets/js/vector-map-custom.js"></script>
+<!-- <script src="assets/js/vector-map-custom.js"></scrip> -->
 
 <!-- Chart Custom JavaScript -->
 <script src="assets/js/chart-custom.js"></script>

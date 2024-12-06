@@ -1,4 +1,7 @@
-<?php include("./header.php") ?>
+<?php include("./header.php");
+include_once('session.php');
+require_once('db_config.php');
+?>
 
 <!-- Wrapper Start -->
 <div class="wrapper">
@@ -58,95 +61,101 @@
                                             Export
                                         </button>
                                     </div>
-                                    <div class="table-responsive iq-product-table">
-                                        <table class="table data-table mb-0">
-                                            <thead class="table-color-heading">
-                                                <tr class="text-light">
-                                                    <th scope="col" class="iq-arrow">
-                                                        <label class="text-muted m-0"> Name</label>
-                                                    </th>
-                                                    <th scope="col">
-                                                        <label class="text-muted mb-0"> Date</label>
-                                                    </th>
-                                                    <th scope="col" class="">
-                                                        <label class="text-muted mb-0">Organized By</label>
-                                                    </th>
-                                                    <th scope="col">
-                                                        <label class="text-muted mb-0">Winner Name</label>
-                                                    </th>
-                                                    <th scope="col">
-                                                        <label class="text-muted mb-0">Winner price</label>
-                                                    </th>
-                                                    <th scope="col" class="text-start">
-                                                        <span class="text-muted">Event Description</span>
-                                                    </th>
-                                                    <th scope="col" class="text-start">
-                                                        <span class="text-muted">Action</span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="white-space-no-wrap">
-                                                    <td class="">
-                                                        <div class="active-project-1 d-flex align-items-center mt-0 ">
-                                                            <div class="h-avatar is-medium">
-                                                                <img class="avatar rounded" alt="user-icon"
-                                                                    src="assets/images/products/1.jpg">
-                                                            </div>
-                                                            <div class="data-content">
-                                                                <div><span class="fw-bold">Pushps</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">11/03/2024</td>
-                                                    <td>Kuldeep Mourya</td>
-                                                    <td>Rohit Wagadi</td>
-                                                    <td>2000</td>
-                                                    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum, est.</td>
-                                                    <td>
-                                                        <div
-                                                            class="d-flex gap-2 justify-content-strat align-items-center">
-                                                            <a class="" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="View" href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                    class="text-secondary " width="22" fill="none"
-                                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                                </svg>
-                                                            </a>
-                                                            <a class="" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="Edit" href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                    class="text-secondary " width="20" fill="none"
-                                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                                </svg>
-                                                            </a>
-                                                            <a class="badge bg-danger" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" title="Delete" href="#">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                    fill="none" viewBox="0 0 24 24"
-                                                                    stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                </svg>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                               
-                                                                                         
-                                            </tbody>
-                                        </table>
+
+                                    <div class="col-lg-12 display-data col-md-12 col-sm-12 add-clients-table">
+                                        <?php
+                                        $query = "SELECT * FROM events ORDER BY event_date ASC";
+                                        $data = mysqli_query($conn, $query);
+                                        $totalvalue = mysqli_num_rows($data);
+                                        ?>
+                                        <div class="table-responsive iq-product-table">
+                                            <table class="table data-table mb-0">
+                                                <thead class="table-color-heading">
+                                                    <tr class="text-light">
+                                                        <th scope="col" class="iq-arrow">Event Name</th>
+                                                        <th scope="col">Event Date</th>
+                                                        <th scope="col">Event Organized By</th>
+                                                        <th scope="col">Event Winner Name</th>
+                                                        <th scope="col">Event Winner Price</th>
+                                                        <th scope="col" class="text-start">Event Description</th>
+                                                        <th scope="col" class="text-start">Event Created Date</th>
+                                                        <th scope="col" class="text-start">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    if ($totalvalue > 0) {
+                                                        while ($result = mysqli_fetch_assoc($data)) {
+                                                            ?>
+                                                            <tr class="white-space-no-wrap">
+                                                                <td><span
+                                                                        class="fw-bold"><?php echo $result['event_name']; ?></span>
+                                                                </td>
+                                                                <td class="text-center"><?php echo $result['event_date']; ?>
+                                                                </td>
+                                                                <td class="text-center"><?php echo $result['organized_by']; ?>
+                                                                </td>
+                                                                <td class="text-center"><?php echo $result['winner_name']; ?>
+                                                                </td>
+                                                                <td class="text-center"><?php echo $result['winner_price']; ?>
+                                                                </td>
+                                                                <td class="text-center text-truncate" data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top"
+                                                                    title=" <?php echo $result['event_description']; ?>">
+                                                                    <?php
+                                                                    $text = substr($result['event_description'], 0, 50) . '...';
+                                                                    echo $text;
+                                                                    ?>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <?php echo $result['Event_added_date']; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <div
+                                                                        class="d-flex gap-2 justify-content-start align-items-center">
+                                                                        <a data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                            title="Edit" href="#">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                class="text-secondary" width="20" fill="none"
+                                                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                                                <path stroke-linecap="round"
+                                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                                            </svg>
+                                                                        </a>
+                                                                        <a class="badge bg-danger"
+                                                                            href="delete.php?id=<?php echo $result['id']; ?>"
+                                                                            onclick="return confirmDelete();"
+                                                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                            title="Delete">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                                fill="none" viewBox="0 0 24 24"
+                                                                                stroke="currentColor">
+                                                                                <path stroke-linecap="round"
+                                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                            </svg>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
+                                                        }
+                                                    } else {
+                                                        ?>
+                                                        <tr>
+                                                            <td colspan="8" class="text-center">No data available in table
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -157,4 +166,10 @@
 
     </div>
 </div>
+<script>
+    const confirmDelete = () => {
+        return confirm("Are you sure want to delete this ..!");
+    }
+
+</script>
 <?php include("./footer.php") ?>

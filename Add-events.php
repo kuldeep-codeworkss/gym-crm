@@ -1,4 +1,45 @@
-<?php include("./header.php") ?>
+<?php include("./header.php");
+include_once('session.php');
+require_once('db_config.php');
+
+if (isset($_POST['add_events'])) {
+
+    // Anti-bot check
+    if (isset($_POST['captcha']) && !empty($_POST['captcha'])) {
+        die("Unauthorized access!");
+    }
+
+    date_default_timezone_set('Asia/Calcutta');
+    $date = date('Y-m-d H:i:s');
+
+    // Get input value
+    $event_name = htmlspecialchars($_POST['Event-name'], ENT_QUOTES);
+    $event_date = htmlspecialchars($_POST['Event-Date'], ENT_QUOTES);
+    $organized_by = htmlspecialchars($_POST['Organized-By'], ENT_QUOTES);
+    $winner_name = htmlspecialchars($_POST['Winner-Name'], ENT_QUOTES);
+    $winner_price = htmlspecialchars($_POST['Winner-price'], ENT_QUOTES);
+    $event_description = htmlspecialchars($_POST['Event-Description'], ENT_QUOTES);
+    $notification_date = date('Y-m-d', strtotime($event_date . ' -2 days'));
+
+    // Validate inputs
+    if (empty($event_name) || empty($event_date)) {
+        die('All required fields must be filled out.');
+    }
+
+    // Insert into database
+    $stmt = $conn->prepare("
+        INSERT INTO events (event_name, event_date, organized_by, winner_name, winner_price, event_description, notification_date, Event_added_date)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+
+    if ($stmt->execute([$event_name, $event_date, $organized_by, $winner_name, $winner_price, $event_description, $notification_date, $date])) {
+        echo "<script>alert('Event Added Successfully!'); 
+        window.location.href='Events-list.php';</script>";
+    } else {
+        echo "<script>alert('Error adding event: {$stmt->errorInfo()[2]}');</script>";
+    }
+}
+?>
 
 <div class="wrapper">
     <?php include("./Sidebar.php") ?>
@@ -34,50 +75,52 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="">
+                            <form class="" method="post" enctype="multipart/form-data" autocomplete="on">
                                 <!-- Basic Information -->
                                 <div class="row g-3">
                                     <h5 class="fw-bold mb-3">Basic Information</h5>
                                     <div class="col-md-6 mb-3">
                                         <label for="Event-name" class="form-label fw-bold text-muted text-uppercase">
                                             Event Name</label>
-                                        <input type="text"  class="form-control" id="Event-name"
-                                            placeholder="Enter Event Name">
+                                        <input type="text" required class="form-control" id="Event-name"
+                                            placeholder="Enter Event Name" name="Event-name">
                                     </div>
                                     <div class="col-md-6 mb-3">
+                                       
                                         <label for="Event-Date"
                                             class="form-label fw-bold text-muted text-uppercase">Event Date</label>
-                                        <input type="text" required
-                                            class="form-control vanila-datepicker datepicker-input" id="Event-Date"
-                                            placeholder="Event Date">
+                                        <input type="text" id="Event-Date" name="Event-Date" required
+                                            class="form-control vanila-datepicker datepicker-input"
+                                            placeholder="Date">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="Organized-By"
                                             class="form-label fw-bold text-muted text-uppercase">Organized By</label>
-                                        <input type="text" class="form-control" id="Organized-By"
+                                        <input type="text" name="Organized-By" class="form-control" id="Organized-By"
                                             placeholder="Enter Organized By">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="Winner-Name"
                                             class="form-label fw-bold text-muted text-uppercase">Winner Name</label>
-                                        <input type="text" class="form-control" id="Winner-Name"
+                                        <input type="text" name="Winner-Name" class="form-control" id="Winner-Name"
                                             placeholder="Enter Winner Name">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="Winner-price"
                                             class="form-label fw-bold text-muted text-uppercase">Winner price</label>
-                                        <input type="text" class="form-control" id="Winner-price"
+                                        <input type="text" name="Winner-price" class="form-control" id="Winner-price"
                                             placeholder="Enter Winner price">
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <label for="Event-Description"
-                                            class="form-label fw-bold text-muted text-uppercase">Event Description</label>
-                                        <textarea class="form-control" id="Event-Description" rows="3"
-                                            placeholder="Enter Event Description"></textarea>
+                                            class="form-label fw-bold text-muted text-uppercase">Event
+                                            Description</label>
+                                        <textarea class="form-control" name="Event-Description" id="Event-Description"
+                                            rows="3" placeholder="Enter Event Description"></textarea>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
-                                    <button class="btn btn-primary">
+                                    <button class="btn btn-primary" type="submit" name="add_events">
                                         Add Event
                                     </button>
                                 </div>
