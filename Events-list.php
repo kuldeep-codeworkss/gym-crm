@@ -111,10 +111,9 @@ require_once('db_config.php');
                                                                     <?php echo $result['Event_added_date']; ?>
                                                                 </td>
                                                                 <td>
-                                                                    <div
-                                                                        class="d-flex gap-2 justify-content-start align-items-center">
-                                                                        <a data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                            title="Edit" href="#">
+                                                                    <div class="d-flex gap-2 justify-content-start align-items-center">
+                                                                        <a data-toggle="modal" data-target="#update-event"
+                                                                            href="update_event.php?id=<?php echo $result['id']; ?>">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 class="text-secondary" width="20" fill="none"
                                                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -124,7 +123,7 @@ require_once('db_config.php');
                                                                             </svg>
                                                                         </a>
                                                                         <a class="badge bg-danger"
-                                                                            href="delete.php?id=<?php echo $result['id']; ?>"
+                                                                            href="delete_event.php?id=<?php echo $result['id']; ?>"
                                                                             onclick="return confirmDelete();"
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             title="Delete">
@@ -154,8 +153,6 @@ require_once('db_config.php');
                                             </table>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -170,6 +167,6 @@ require_once('db_config.php');
     const confirmDelete = () => {
         return confirm("Are you sure want to delete this ..!");
     }
-
 </script>
+
 <?php include("./footer.php") ?>

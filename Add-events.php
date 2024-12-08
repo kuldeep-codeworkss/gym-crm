@@ -29,14 +29,23 @@ if (isset($_POST['add_events'])) {
     // Insert into database
     $stmt = $conn->prepare("
         INSERT INTO events (event_name, event_date, organized_by, winner_name, winner_price, event_description, notification_date, Event_added_date)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
     ");
 
-    if ($stmt->execute([$event_name, $event_date, $organized_by, $winner_name, $winner_price, $event_description, $notification_date, $date])) {
-        echo "<script>alert('Event Added Successfully!'); 
-        window.location.href='Events-list.php';</script>";
+    if ($stmt) {
+        $stmt->bind_param("ssssssss", $event_name, $event_date, $organized_by, $winner_name, $winner_price, $event_description, $notification_date, $date);
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "<script>alert('Event Added Successfully!'); 
+            window.location.href='Events-list.php';</script>";
+        } else {
+            echo "<script>alert('Error adding event: {$stmt->errorInfo()[2]}');</script>";
+        }
+
+        // Close the statement
+        $stmt->close();
     } else {
-        echo "<script>alert('Error adding event: {$stmt->errorInfo()[2]}');</script>";
+        echo "Error preparing statement: " . $conn->error;
     }
 }
 ?>
@@ -53,7 +62,7 @@ if (isset($_POST['add_events'])) {
                             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
                                 aria-label="breadcrumb">
                                 <ol class="breadcrumb ps-0 mb-0 pb-0">
-                                    <li class="breadcrumb-item"><a href="#">Events</a></li>
+                                    <li class="breadcrumb-item"><a href="./Events-list.php">Events</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Add Events</li>
                                 </ol>
                             </nav>
@@ -86,12 +95,11 @@ if (isset($_POST['add_events'])) {
                                             placeholder="Enter Event Name" name="Event-name">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                       
+
                                         <label for="Event-Date"
                                             class="form-label fw-bold text-muted text-uppercase">Event Date</label>
                                         <input type="text" id="Event-Date" name="Event-Date" required
-                                            class="form-control vanila-datepicker datepicker-input"
-                                            placeholder="Date">
+                                            class="form-control vanila-datepicker datepicker-input" placeholder="Date">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="Organized-By"
@@ -135,3 +143,4 @@ if (isset($_POST['add_events'])) {
 </div>
 
 <?php include("./footer.php") ?>
+
