@@ -44,6 +44,18 @@ if (isset($_POST['add_visitor'])) {
     }
     
 }
+
+// notifications 
+// $today = date('Y-m-d');
+// $query = "SELECT * FROM visitor WHERE visitor_notification = '$today'";
+// $result = mysqli_query($conn, $query);
+
+// if (mysqli_num_rows($result) > 0) {
+//     echo "<script>alert('You have follow-up reminders for today.')</script>";
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         echo "<script>alert('Follow up with {$row['visitor_name']} (Phone: {$row['visitor_phone']})')</script>";
+//     }
+// }
 ?>
 
 

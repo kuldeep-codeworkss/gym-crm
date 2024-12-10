@@ -12,9 +12,8 @@
                             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
                                 aria-label="breadcrumb">
                                 <ol class="breadcrumb ps-0 mb-0 pb-0">
-                                    <li class="breadcrumb-item"><a href="./Personal-trainer-list.php">Personal
-                                            Trainer</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Add Personal Trainer</li>
+                                    <li class="breadcrumb-item"><a href="./Personal-trainer-list.php">Employee</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Add Employees</li>
                                 </ol>
                             </nav>
                         </div>
@@ -30,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 mb-3 d-flex justify-content-between">
-                    <h4 class="fw-bold d-flex align-items-center">Add Personal Trainer</h4>
+                    <h4 class="fw-bold d-flex align-items-center">Add Employees</h4>
                 </div>
                 <div class="col-lg-12">
                     <div class="card">
@@ -60,6 +59,16 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
+                                        <label for="category"
+                                            class="form-label fw-bold text-muted text-uppercase">Category</label>
+                                        <select id="category" class="form-select form-control choicesjs">
+                                            <option value="selected">Select Category</option>
+                                            <option value="Personal Trainer">Personal Trainer</option>
+                                            <option value="Cleaner">Cleaner</option>
+                                            <option value="Reception">Reception</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
                                         <label for="Email Address"
                                             class="form-label fw-bold text-muted text-uppercase">Email
                                             Address </label>
@@ -71,15 +80,6 @@
                                             class="form-label fw-bold text-muted text-uppercase">Age</label>
                                         <input type="number" class="form-control" id="Age" placeholder="Enter Age">
                                     </div>
-                                    <!-- <div class="col-md-6 mb-3">
-                                        <label for="Members-Assign" class="form-label fw-bold text-muted text-uppercase"> Members Assign </label>
-                                        <select multiple class="form-control choicesjs" id=" Members-Assign" name="Plan-type">
-                                            <option value="Basic" selected>Basic</option>
-                                            <option value="Personal-Trainer">Personal Trainer</option>
-                                            <option value="Cardio">Cardio</option>
-                                            
-                                        </select>
-                                    </div> -->
                                     <div class="col-md-6 mb-3">
                                         <label for="Aadhar-card" class="form-label fw-bold text-muted text-uppercase">
                                             Aadhar / Pan Card </label>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
                                     <button class="btn btn-primary">
-                                        Add Personal Trainer
+                                        Add Employees
                                     </button>
                                 </div>
                             </form>
